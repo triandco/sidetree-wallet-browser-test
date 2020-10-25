@@ -5,6 +5,8 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import json from '@rollup/plugin-json';
+import replace from "@rollup/plugin-replace";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -37,7 +39,14 @@ export default {
 		name: 'app',
 		file: 'public/build/bundle.js'
 	},
+	external: [
+		'node-webcrypto-ossl',
+	],
 	plugins: [
+		replace({
+			"node-webcrypto-ossl": 'node-webcrypto-shim',
+		}),
+		json(),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
