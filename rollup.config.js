@@ -7,6 +7,7 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
 import replace from "@rollup/plugin-replace";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -64,10 +65,12 @@ export default {
 		// consult the documentation for details:
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
+			preferBuiltins: false,
 			browser: true,
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+		nodePolyfills(),
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
