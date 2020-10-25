@@ -20,7 +20,8 @@
     "@rollup/plugin-typescript": "^6.0.0",
     "typescript": "^3.9.3",
     "tslib": "^2.0.0",
-    "@tsconfig/svelte": "^1.0.0"
+    "@tsconfig/svelte": "^1.0.0",
+    "@sidetree/wallet": "^0.1.1-unstable.14"
   },
   "dependencies": {
     "sirv-cli": "^1.0.0"
